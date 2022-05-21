@@ -1,14 +1,20 @@
 import './App.css';
+import NotFound from './components/NotFound';
+import Signup from './components/Signup';
+import Login from './components/Login';
+import Mainpage from './components/Mainpage'
+import Navbar from './components/Navbar/Navbar';
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import { useState, Navigate, useRef } from 'react'
+import { userInformation } from './authentication/Authentication'
+
 import {initializeApp} from 'firebase/app'
-import {
-  getAuth,
-  createUserWithEmailAndPassword,
-  signOut
-} from 'firebase/auth'
-import { getDomainLocale } from 'next/dist/next-server/lib/router/router';
+import {getFirestore} from 'firebase/firestore'
+import {getAuth} from 'firebase/auth'
 
+import { useCollectionData } from 'react-firebase-hooks/firestore';
+import { useAuthState } from 'react-firebase-hooks/auth'
 
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
   apiKey: "AIzaSyC6A4BHtwe60i7MdQSpQmy2pDzavJw9Eok",
   authDomain: "tutoring-website-d4601.firebaseapp.com",
@@ -22,43 +28,52 @@ const firebaseConfig = {
 //Init app
 initializeApp(firebaseConfig);
 
-//init authetication
 const auth = getAuth();
+const firestore = getFirestore()
 
-//FUNCTION THAT CREATES AN ACCOUNT
-const CreateUserAccount = (email, password) => {
-  createUserWithEmailAndPassword(auth, email, password)
-
-    .then((cred) => {
-      console.log("user created", cred.user)
-    })
-
-    .catch((error) => {
-      console.log('There was an error creating your account, the email address may already be in use')
-      console.log(error)
-    })
-}
-
-//SIGN USER OUT
-const LogOut = () => {
-  signOut(auth)
-    .then(() => {
-      console.log('user has logged out');
-    })
-    .catch((error) => {
-      console.log(error);
-    })
-}
-
-// createUserAccount('poxape6314@dufeed.com', 'as;ldjf;lajf;ljf');
-LogOut()
 
 
 function App() {
+  //signed in user is an object, signed out, user is null
+    const [user] = useAuthState(auth);
+    console.log(user)
+
   return (
-    <div className="App">
+      <div className="App">
+      
+      <Navbar/>
+      <Routes>
+        <Route path="/" element={user ? <Mainpage /> : <Mainpage />}/>
+        <Route path="/signup" element={<Signup />} />
+        <Route path="/login" element={<Login />} />
+        
+
+        <Route path="*" element={<NotFound />} />
+          
+      </Routes>
+      
     </div>
+    
   );
 }
+
+// LOGOUT
+// const [ loading, setLoading ] = useState(false);
+//   const currentUser = useAuth();
+
+//   const emailRef = useRef();
+//   const passwordRef = useRef();
+
+  
+
+//   async function handleLogout() {
+//     setLoading(true);
+//     try {
+//       await SignUserIn();
+//     } catch {
+//       alert("Error!");
+//     }
+//     setLoading(false);
+//   }
 
 export default App;
