@@ -7,13 +7,10 @@ import Navbar from './components/Navbar/Navbar';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import { useState, Navigate, useRef } from 'react'
 import { userInformation } from './authentication/Authentication'
-
 import {initializeApp} from 'firebase/app'
-import {getFirestore, collection, getDocs} from 'firebase/firestore'
 import {getAuth} from 'firebase/auth'
-
-import { useCollectionData } from 'react-firebase-hooks/firestore';
 import { useAuthState } from 'react-firebase-hooks/auth'
+import Dashboard from './components/dashboard';
 
 const firebaseConfig = {
   apiKey: "AIzaSyB6Vc4u0g4AYYrzEDo8UYrNssd1vxIVHdc",
@@ -29,23 +26,7 @@ const firebaseConfig = {
 initializeApp(firebaseConfig);
 
 const auth = getAuth();
-const db = getFirestore()
 
-//collection ref
-const colRef = collection(db, 'book')
-
-//get collection data
-getDocs(colRef)
-  .then((snapshot) => {
-    let books = []
-    snapshot.docs.forEach((doc) => {
-      books.push({ ...doc.data(), id: doc.id })
-    })
-    console.log(books)
-  })
-  .catch((err) => {
-    console.log(err.message)
-  })
 
 
 // function ChatRoom() {
@@ -78,7 +59,7 @@ function App() {
       
       <Navbar/>
       <Routes>
-        <Route path="/" element={user ? <Mainpage /> : <Mainpage />}/>
+        <Route path="/" element={user ? <Dashboard /> : <Mainpage />}/>
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login />} />
         

@@ -3,12 +3,25 @@ import { Link } from 'react-router-dom'
 import { useState, useRef } from 'react'
 import { CreateUserAccount } from '../authentication/Authentication'
 import { Navigate } from 'react'
-import { LoggedIn, useAuth } from '../authentication/Authentication'
+import {getAuth, updateProfile} from 'firebase/auth'
+import { LoggedIn, useAuth, GoogleAuthProvider } from '../authentication/Authentication'
+
+
+// var firebase = require('firebase');
+// var firebaseui = require('firebaseui');
+
+// // Initialize the FirebaseUI Widget using Firebase.
+// var ui = new firebaseui.auth.AuthUI(firebase.auth());
+
+
+
+const auth = getAuth();
 
 const Signup = () => {
   const [ loading, setLoading ] = useState(false);
-  const currentUser = useAuth();
+  const [user, setUser] = useState(() => auth.currentUser);
 
+  const usernameRef = useRef();
   const emailRef = useRef();
   const passwordRef = useRef();
 
@@ -16,9 +29,14 @@ const Signup = () => {
     setLoading(true);
     try {
       await CreateUserAccount(emailRef.current.value, passwordRef.current.value);
+      console.log(auth);
+      updateProfile(auth.currentUser, {
+        displayName: usernameRef.current.value
+      })
     } catch {
       alert("Error!");
     }
+    console.log(auth.currentUser.providerData);
     setLoading(false);
   }
 
@@ -28,10 +46,25 @@ const Signup = () => {
   }
 
 
+
   return (
     <div className = "form-content-right" onSubmit={HandleSubmit}>
-            <form className= "form">
+            <form className= "form"> 
               <h1> Signup Now </h1>
+              <div className = "form-inputs">
+                  <label htmlFor = "text"
+                  className="form-label">
+                    Username 
+                  </label>
+                    <input
+                      id = 'text'
+                      type = 'text'
+                      name='text'
+                      className='form-input'
+                      placeholder="Please enter your username"
+                      ref={usernameRef}
+                    />
+                </div>
               <div className = "form-inputs">
                 <label htmlFor = "email" className="form-label"> 
                   Email 
@@ -68,7 +101,7 @@ const Signup = () => {
                 </label>
                   <input 
                     id = 'password2'
-                    type = 'password2'
+                    type = 'password'
                     name='password2'
                     className='form-input'
                     placeholder="Please enter your password again"
@@ -83,8 +116,6 @@ const Signup = () => {
     </ div > 
   )
 }
-
-
 
 
 export default Signup

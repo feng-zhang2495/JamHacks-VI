@@ -11,16 +11,16 @@ const Login = () => {
 
     const emailRef = useRef();
     const passwordRef = useRef();
-
+    
     
 
     async function handleLogin() {
         setLoading(true);
         try {
-        await SignUserIn(emailRef.current.value, passwordRef.current.value);
-        console.log('Logged In')
+          await SignUserIn(emailRef.current.value, passwordRef.current.value);
+          console.log('Logged In');
         } catch {
-        alert("Error!");
+          alert("Error!");
         }
         setLoading(false);
     }
