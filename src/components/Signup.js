@@ -74,7 +74,8 @@ const Signup = () => {
                     placeholder="Please enter your password again"
                   />
 
-                  <button onClick={handleSignup}>Sign Up</button>
+                  <button 
+                  onClick={handleSignup}>Sign Up</button>
               </div>    
             </form>
 

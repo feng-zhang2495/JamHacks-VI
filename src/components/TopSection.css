@@ -18,3 +18,18 @@ img {
     object-fit: contain;
 
 }
+
+.top-container > h1 {
+    color: #fff;
+    background-color: #000;
+    font-size: 50px;
+    margin-top: 100px
+}
+
+.front-button{
+    padding: 8px 20px;
+    border-radius: 2px;
+    outline: none;
+    border: none;
+
+}

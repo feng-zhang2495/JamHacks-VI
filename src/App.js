@@ -9,34 +9,69 @@ import { useState, Navigate, useRef } from 'react'
 import { userInformation } from './authentication/Authentication'
 
 import {initializeApp} from 'firebase/app'
-import {getFirestore} from 'firebase/firestore'
+import {getFirestore, collection, getDocs} from 'firebase/firestore'
 import {getAuth} from 'firebase/auth'
 
 import { useCollectionData } from 'react-firebase-hooks/firestore';
 import { useAuthState } from 'react-firebase-hooks/auth'
 
 const firebaseConfig = {
-  apiKey: "AIzaSyC6A4BHtwe60i7MdQSpQmy2pDzavJw9Eok",
-  authDomain: "tutoring-website-d4601.firebaseapp.com",
-  projectId: "tutoring-website-d4601",
-  storageBucket: "tutoring-website-d4601.appspot.com",
-  messagingSenderId: "488845068083",
-  appId: "1:488845068083:web:80b332b8399c340eb3a046",
-  measurementId: "G-VZ18G90N5Q"
+  apiKey: "AIzaSyB6Vc4u0g4AYYrzEDo8UYrNssd1vxIVHdc",
+  authDomain: "tutoring-app-8caac.firebaseapp.com",
+  projectId: "tutoring-app-8caac",
+  storageBucket: "tutoring-app-8caac.appspot.com",
+  messagingSenderId: "430567269506",
+  appId: "1:430567269506:web:41487159a1908e1585009b",
+  measurementId: "G-0Y54M15CXM"
 };
 
 //Init app
 initializeApp(firebaseConfig);
 
 const auth = getAuth();
-const firestore = getFirestore()
+const db = getFirestore()
 
+//collection ref
+const colRef = collection(db, 'book')
+
+//get collection data
+getDocs(colRef)
+  .then((snapshot) => {
+    let books = []
+    snapshot.docs.forEach((doc) => {
+      books.push({ ...doc.data(), id: doc.id })
+    })
+    console.log(books)
+  })
+  .catch((err) => {
+    console.log(err.message)
+  })
+
+
+// function ChatRoom() {
+//   const messagesRef = collection('messages');
+//   const query = messagesRef.orderby('createdAt').limit(25);
+
+//   const [messages] = useCollectionData(query, {idField: 'id'});
+
+//   return (
+//     <div>
+//       {messages && messages.map(msg => <ChatMessage key={msg.id} message={msg}/> )}
+//     </div>
+//   )
+// }
+
+// function ChatMessage(props) {
+//   const { text, uid } = props.message;
+
+//   return <p>{text}</p>
+// }
 
 
 function App() {
   //signed in user is an object, signed out, user is null
     const [user] = useAuthState(auth);
-    console.log(user)
+    // console.log(user)
 
   return (
       <div className="App">
