@@ -1,6 +1,6 @@
 # Headstart Tutors
 
-##How to run the website
+## How to run the website
 
 run `npm install` to install all the dependencies of the project first. 
 
