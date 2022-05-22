@@ -2,8 +2,9 @@ import './App.css';
 import NotFound from './components/NotFound';
 import Signup from './components/Signup';
 import Login from './components/Login';
-import Mainpage from './components/Mainpage'
 import Navbar from './components/Navbar/Navbar';
+import Profile from './components/Profile';
+import Mainpage from './components/Mainpage';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import { useState, Navigate, useRef } from 'react'
 import { userInformation } from './authentication/Authentication'
@@ -62,8 +63,7 @@ function App() {
         <Route path="/" element={user ? <Dashboard /> : <Mainpage />}/>
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login />} />
-        
-
+        <Route path="/profile" element={<Profile />} />
         <Route path="*" element={<NotFound />} />
           
       </Routes>

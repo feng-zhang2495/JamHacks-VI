@@ -1,61 +1,87 @@
 import React from 'react' 
 import { useState } from 'react'
 import { addDoc } from 'firebase/firestore'
-import {getFirestore, collection, getDocs, onSnapshot} from 'firebase/firestore'
+import {getFirestore, collection, getDocs, onSnapshot, doc} from 'firebase/firestore'
 
+
+async function getData() {
+    const db = getFirestore()
+
+    const docRef = doc(db, "messsages", "SF");
+    const docSnap = await getDocs(docRef);
+
+    if (docSnap.exists()) {
+    console.log("Document data:", docSnap.data());
+    } else {
+    // doc.data() will be undefined in this case
+    console.log("No such document!");
+    }
+}
+
+getData()
 
 function Dashboard() {
     const db = getFirestore()
 
     //collection ref
     const colRef = collection(db, 'messages')
+    const [renderList, setRenderList] = useState();
 
-    // const query = colRef.orderBy('createdAt').limit(100) 
+    var msgs = []
+    var texts = []
+
 
     // real time collection data
     onSnapshot(colRef, (snapshot) => {
-        var msgs = []
+        console.log("A")
         snapshot.docs.forEach((doc) => {
-        msgs.push({ ...doc.data(), id: doc.id })
+            msgs.push({ ...doc.data(), id: doc.id })
         })
-        console.log(msgs)
+
+    
+        for (let i=0; i < msgs.length; i++) {
+            texts.push(msgs[i].text.messages)
+        }
+
+        
+        const lst = texts.map((item) => {
+            
+            return <div>{item}</div>         
+        })
+        console.log('B')
+        setRenderList(lst)
+        texts = []
     })
-
-
-    //output messages to screen function
-    // const MesssageOutput = (msgs) => {
-    //     for (let i = 0; i < msgs.length; i++) {
-    //         const element = <h1>msgs[i]</h1>
-    //         element.
-    //     }
-    // }
-
     
-    
+
+
 
     const [messages, setMessage] = useState('')
-    const [formValue, setFormValue] = useState('')
+    
     //ADDS A MESSAGE TO THE DATABASE
     const HandleSubmit = (e) => {
         e.preventDefault()
-        
+        addDoc(colRef, {
+            text: {messages}
+        })
+            .then(() => {
+                console.log('Message added to database')
+                const element = <div>{messages}</div>
+                setRenderList(renderList.append(element))
+            })
+            .catch((e) => {
+                console.log(e)
+            })
     }
-
-    // addDoc(colRef, {
-    //     text: {messages}
-    // })
-    //     .then(() => {
-    //         console.log('Message added to database')
-    //     })
-    //     .catch((e) => {
-    //         console.log(e)
-    //     })
 
 
     return (
     <div>
         <div id="MessageOut">
-                
+            <ul>
+                {renderList}
+            </ul>
+            
         </div>
         <form className= "form" onSubmit={HandleSubmit}>
                 <h1> Text Message </h1>

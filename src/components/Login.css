@@ -1,0 +1,100 @@
+.form-content-right {
+    background-color: lightblue;
+    display: flex;
+    margin: 2%;
+    border-radius: 25px;
+
+}
+
+#background-img {
+    top:2%;
+    left:-0.25%
+}
+
+#login {
+    margin-left: 28%;
+    margin-top: 10%;
+}
+
+.form-label {
+    font-size: 22px;
+    /* background-color: red; */
+    font-size: 17px;
+    
+}
+
+.form-inputs {
+    font-size: 22px;
+    border-radius: 20px;
+    /* margin-left: 20%; */
+    border: black;
+}
+
+.submitButton {
+    margin-left: 30%;
+}
+
+.NoAccount {
+    /* margin-left: 10%; */
+    /* background-color: red; */
+    padding: 0% 10%;
+    white-space: nowrap;
+    position: relative;
+    right: 20%;
+    bottom: 100%
+}
+
+.rfc {
+    background-color: rgb(73, 67, 230);
+    padding-right: 20%;
+    border-radius: 0px 20px 20px 0px;
+    display: flex;
+    justify-content: center;
+}
+
+.lfc {
+    /* background-color:red; */
+    padding: 0% 17%;
+    border-radius: 20px;
+    
+}
+
+#email {
+    border-radius: 20px;
+    padding: 5%;
+    margin-top: 4%;
+    font-size: 15px;
+    margin-bottom: 7%;
+    border-color: purple;
+    border-width: 2px;
+}
+
+#password {
+    border-radius: 20px;
+    padding: 5%;
+    margin-top: 4%;
+    font-size: 15px;
+    border-color: purple;
+    border-width: 2px;
+}
+
+.submitButton {
+    padding: 6% 35%;
+    background-color: rgb(108, 69, 236);
+    position: relative;
+    white-space:nowrap;
+    right: 30%;
+    border-radius: 20px;
+    border: none;
+    margin-bottom: 20%;
+    margin-top: 3%;
+}
+
+.slogan {
+    /* background-color: red; */
+    text-align: center;
+    white-space: nowrap;
+    margin-left: 75%;
+    margin-top: 40%;
+    color:rgb(13, 10, 97)
+}

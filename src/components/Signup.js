@@ -1,11 +1,14 @@
 import React from 'react'
+import Navbar from './Navbar/Navbar';
 import { Link } from 'react-router-dom'
 import { useState, useRef } from 'react'
 import { CreateUserAccount } from '../authentication/Authentication'
 import { Navigate } from 'react'
 import {getAuth, updateProfile} from 'firebase/auth'
 import { LoggedIn, useAuth, GoogleAuthProvider } from '../authentication/Authentication'
-
+import './Signup.css'
+import './TopSection.css';
+import logo from '../Images/tutor.png'
 
 // var firebase = require('firebase');
 // var firebaseui = require('firebaseui');
@@ -16,6 +19,8 @@ import { LoggedIn, useAuth, GoogleAuthProvider } from '../authentication/Authent
 
 
 const auth = getAuth();
+
+
 
 const Signup = () => {
   const [ loading, setLoading ] = useState(false);
@@ -38,6 +43,7 @@ const Signup = () => {
     }
     console.log(auth.currentUser.providerData);
     setLoading(false);
+    <Navbar/>
   }
 
   const HandleSubmit = (event) => {
@@ -46,15 +52,18 @@ const Signup = () => {
   }
 
 
-
   return (
-    <div className = "form-content-right" onSubmit={HandleSubmit}>
-            <form className= "form"> 
-              <h1> Signup Now </h1>
-              <div className = "form-inputs">
+    <div>
+      <img src={logo} id="back-img" alt="This is the background" />
+    <div className = "form-content" onSubmit={HandleSubmit}>
+       
+      <div className='lc'>
+      <form className= "form"> 
+              <h1 id="sign-up"> Sign Up</h1>
+              <div className = "form-inp">
                   <label htmlFor = "text"
-                  className="form-label">
-                    Username 
+                  className="form-lab">
+                    <u>Username</u><br/>
                   </label>
                     <input
                       id = 'text'
@@ -65,9 +74,9 @@ const Signup = () => {
                       ref={usernameRef}
                     />
                 </div>
-              <div className = "form-inputs">
-                <label htmlFor = "email" className="form-label"> 
-                  Email 
+              <div className = "form-inp">
+                <label htmlFor = "email" className="form-lab"> 
+                  <u>Email</u> <br></br>
                 </label>
 
                 <input
@@ -79,9 +88,9 @@ const Signup = () => {
                     ref = {emailRef}
                   />
               </div>
-              <div className = "form-inputs">
-                <label htmlFor = "password" className="form-label">
-                  Password 
+              <div className = "form-inp">
+                <label htmlFor = "password" className="form-lab">
+                  <u>Password</u><br/>
                 </label>
 
                 <input 
@@ -94,10 +103,10 @@ const Signup = () => {
                   />
               </div>
 
-              <div className = "form-inputs">
+              <div className = "form-inp">
                 <label htmlFor = "password2"
-                className="form-label">
-                  Confirm Password 
+                className="form-lab">
+                  <u>Confirm Password</u> 
                 </label>
                   <input 
                     id = 'password2'
@@ -107,13 +116,20 @@ const Signup = () => {
                     placeholder="Please enter your password again"
                   />
 
-                  <button 
-                  onClick={handleSignup}>Sign Up</button>
+                  <p id="already-account">Already have an account? <Link to="/login">Log in here</Link></p>
+                  <button onSubmit={handleSignup} id="sign-up-button">Sign Up</button>
               </div>    
+
             </form>
 
-            <p>Already have an account? <Link to="/login">Log in here</Link></p>
+      </div>
+      <div className='rc'>
+        <h1 id='signup-text'>Start Using Headstart Tutors<br></br> for a new, Effective and <br></br>Immersive Tutoring Experience!</h1>
+      </div>
+            
     </ div > 
+    </div>
+    
   )
 }
 

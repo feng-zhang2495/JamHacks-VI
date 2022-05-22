@@ -3,6 +3,8 @@ import { Link, Switch } from 'react-router-dom';
 import { useAuthState } from 'react-firebase-hooks/auth'
 import {getAuth} from 'firebase/auth'
 import { LogOut } from '../../authentication/Authentication'
+import Logo from '../../Images/logo.png'
+import '../Navbar/Navbar.css'
 import {
     Nav,
     NavLink,
@@ -20,12 +22,12 @@ const Navbar = () => {
     return(
         <div>
             <Nav>
-            <NavLink to="/">
-                <h1>Logo</h1>
+            <NavLink to="/" className="navbarlogo">
+                <img src= {Logo} alt= "This is a Logo" /> 
             </NavLink>
             <Bars />
             <NavMenu>
-                <NavLink to="/about" activeStyle>
+                {/* <NavLink to="/about" activeStyle>
                 About
                 </NavLink>
                 <NavLink to="/contact" activeStyle>
@@ -33,7 +35,7 @@ const Navbar = () => {
                 </NavLink>
                 <NavLink to="/upload" activeStyle>
                 Upload
-                </NavLink>
+                </NavLink> */}
             </NavMenu>
             <NavBtn>
                 <NavBtnLink to="/signup"> Signup </NavBtnLink>
@@ -49,8 +51,8 @@ const Navbar = () => {
     return(
         <div>
             <Nav>
-            <NavLink to="/">
-                <h1>Logo</h1>
+            <NavLink to="/" className="navbarlogo">
+                <img src= {Logo} alt= "This is a Logo" />
             </NavLink>
             <Bars />
             <NavMenu>
@@ -65,12 +67,13 @@ const Navbar = () => {
                 </NavLink>
             </NavMenu>
             <NavBtn>
-                <NavBtnLink to="/profile" >Hello {user.providerData[0].displayName}</NavBtnLink>
+                <NavBtnLink to="/profile"> Hello {user.providerData[0].displayName}</NavBtnLink>
                 <NavBtnLink to="/" onClick={LogOut}>LogOut</NavBtnLink>
             </NavBtn>
             </Nav>  
 
-        
+            
+
         </div>
     )
     }

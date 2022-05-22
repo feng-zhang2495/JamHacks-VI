@@ -4,6 +4,9 @@ import { useState, useRef } from 'react';
 import { SignUserIn } from '../authentication/Authentication'
 import { Navigate } from 'react'
 import { useAuth } from '../authentication/Authentication'
+import './Login.css'
+import './TopSection.css';
+import logo from '../Images/tutor.png'
 
 const Login = () => {
     const [ loading, setLoading ] = useState(false);
@@ -23,6 +26,7 @@ const Login = () => {
           alert("Error!");
         }
         setLoading(false);
+
     }
 
     const HandleSubmit = (event) => {
@@ -36,14 +40,19 @@ const Login = () => {
 
 
     return (
-      <div classname = "form-content-right">
-              <form className= "form" onSubmit={HandleSubmit}>
-                <h1> Login </h1>
+      <div className = "form-content-right">
+        <img src={logo} id="background-img" alt="This is the background" />
+          <div class="lfc">
+          <form className= "form" onSubmit={HandleSubmit}>
+                <h1 id="login"> Log in </h1>
                 <div className = "form-inputs">
                   <label htmlFor = "email"
                   className="form-label">
-                    Email 
+                    <u>Email</u> 
                   </label>
+
+                  <br></br>
+
                     <input
                       id = 'email' 
                       type = 'email'
@@ -52,12 +61,16 @@ const Login = () => {
                       placeholder="Please enter your email"
                       ref={emailRef}
                     />
+
                 </div>
-                <div className = "form-inputs">``
+                <div className = "form-inputs">
                   <label htmlFor = "password"
                   className="form-label">
-                    Password 
+                      <u>Password</u> 
                   </label>
+                  
+                  <br></br>
+                  
                     <input 
                       id = 'password'
                       type = 'password'
@@ -69,11 +82,16 @@ const Login = () => {
                     
                     
                 </div>
-
-                <button style={{buttonStyle}} onClick={handleLogin}>Sign In</button>
-
-                <p>Don't have an account? <Link to="/signup">Sign up here</Link></p>
+                <p className="NoAccount">Don't have an account? <Link to="/signup">Sign up here</Link></p>
+                <button style={{buttonStyle}} onClick={handleLogin} class="submitButton">Sign In</button>
+                
               </form>
+          </div>
+
+          <div class="rfc">
+            <h1 className="slogan">A new Immersive Tutoring<br/>Experience Awaits YOU.</h1>
+          </div>
+              
       </ div > 
     )
   }

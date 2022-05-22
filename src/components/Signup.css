@@ -1,0 +1,139 @@
+* {
+    font-family:"Tahoma"
+}
+
+#Letters {  
+    background-color: white;
+    color: black;
+    margin-bottom: 0px;
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: 0 0 16px rgb(233, 229, 229), 0 0 32px #000;
+    opacity: 0.9;
+
+}
+
+#Letters2 {
+    background-color: white;
+    color: black;
+    margin-top: 0px;
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: 0 0 16px rgb(233, 229, 229), 0 0 32px #000;
+    opacity: 0.9;
+}
+
+#middleBTN {
+    color: black;
+}
+
+#middleBTN:hover {
+    background-color: grey;
+    
+}
+
+.form-content {
+    display:flex;
+    background-color: rgb(237, 226, 106);
+    display: flex;
+    margin: 0%;
+    padding-bottom: 75px;
+    border-radius: 25px;
+}
+
+#sign-up {
+    margin-left: 28%;
+    margin-top: 10%;
+}
+
+.form-lab {
+    font-size: 22px;
+    /* background-color: red; */
+    font-size: 17px;
+    
+}
+
+.lc {
+    padding: 0% 17%;
+    border-radius: 20px;
+}
+
+.rc {
+    padding-right: 12%;
+    background-color: rgb(20, 20, 20);
+    border-radius: 0px 20px 20px 0px;
+    display: flex;
+    justify-content: center;
+ 
+
+}
+
+#back-img {
+    margin: 0;
+    top: 2%; 
+}
+
+/* EMAIL INPUT */
+#text {
+    border-radius: 20px;
+    padding: 5%;
+    margin-top: 4%;
+    margin-bottom: 7%;
+    font-size: 15px;
+    border-color: purple;
+    border-width: 2px;
+}
+
+#sign-up-button {
+    padding: 6% 35%;
+    background-color: rgb(108, 69, 236);
+    position: relative;
+    white-space:nowrap;
+    
+    border-radius: 20px;
+    border: none;
+    margin-bottom: 20%;
+    margin-top: 3%;
+    right: 4%;
+}
+
+#password2 {
+    border-radius: 20px;
+    padding: 5%;
+    margin-top: 4%;
+    font-size: 15px;
+    margin-bottom: 7%;
+    border-color: purple;
+    border-width: 2px;
+}
+
+#password {
+    border-radius: 20px;
+    padding: 5%;
+    margin-top: 4%;
+    font-size: 15px;
+    margin-bottom: 7%;
+    border-color: purple;
+    border-width: 2px;
+}
+
+.form-lab {
+    font-size: 22px;
+    /* background-color: red; */
+    font-size: 17px;
+}
+
+#already-account {
+    position: relative;
+    white-space: nowrap;
+    right:9%;
+}
+
+#signup-text {
+    white-space: nowrap;
+    text-align: center;
+    white-space: nowrap;
+    margin-left: 40%;
+    margin-top: 47%;
+    color:rgb(13, 10, 97)
+}

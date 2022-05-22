@@ -1,0 +1,9 @@
+.navbarlogo img{
+    flex: 50%;
+    width: 11%;
+    height: 11%;
+    display: relative;
+    align-items: center;
+    padding-left: -50px;
+    z-index: 1;
+}
