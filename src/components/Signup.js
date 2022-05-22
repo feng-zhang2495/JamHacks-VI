@@ -59,6 +59,9 @@ const Signup = () => {
        
       <div className='lc'>
       <form className= "form"> 
+
+
+
               <h1 id="sign-up"> Sign Up</h1>
               <div className = "form-inp">
                   <label htmlFor = "text"
@@ -124,7 +127,7 @@ const Signup = () => {
 
       </div>
       <div className='rc'>
-        <h1 id='signup-text'>Start Using Headstart Tutors<br></br> for a new, Effective and <br></br>Immersive Tutoring Experience!</h1>
+        <h1 id='signup-text'>Start Using Headstart Tutors <br></br> for a new, Effective and <br></br>Immersive Tutoring Experience!</h1>
       </div>
             
     </ div > 

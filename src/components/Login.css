@@ -1,8 +1,10 @@
 .form-content-right {
-    background-color: lightblue;
+    background-color: rgb(237, 226, 106);
     display: flex;
-    margin: 2%;
-    border-radius: 25px;
+    margin: 0%;
+    border-radius: 0px;
+    padding-bottom: 230px;
+    
 
 }
 
@@ -13,13 +15,14 @@
 
 #login {
     margin-left: 28%;
-    margin-top: 10%;
+    margin-top: 25%;
 }
 
 .form-label {
     font-size: 22px;
     /* background-color: red; */
     font-size: 17px;
+    margin-left: 15%;
     
 }
 
@@ -45,18 +48,19 @@
 }
 
 .rfc {
-    background-color: rgb(73, 67, 230);
+    background-color: rgb(20, 20, 20);
     padding-right: 20%;
     border-radius: 0px 20px 20px 0px;
     display: flex;
     justify-content: center;
+
 }
 
 .lfc {
     /* background-color:red; */
     padding: 0% 17%;
     border-radius: 20px;
-    
+    padding-bottom: 240px;
 }
 
 #email {
@@ -67,6 +71,9 @@
     margin-bottom: 7%;
     border-color: purple;
     border-width: 2px;
+
+
+
 }
 
 #password {
@@ -76,6 +83,7 @@
     font-size: 15px;
     border-color: purple;
     border-width: 2px;
+
 }
 
 .submitButton {
@@ -88,6 +96,7 @@
     border: none;
     margin-bottom: 20%;
     margin-top: 3%;
+
 }
 
 .slogan {
@@ -95,6 +104,6 @@
     text-align: center;
     white-space: nowrap;
     margin-left: 75%;
-    margin-top: 40%;
-    color:rgb(13, 10, 97)
+    margin-top: 60%;
+    color:rgb(171, 167, 167)
 }

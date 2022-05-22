@@ -27,30 +27,23 @@ function Dashboard() {
     const colRef = collection(db, 'messages')
     const [renderList, setRenderList] = useState();
 
-    var msgs = []
-    var texts = []
-
+    const [msgs, setMsgs] = useState([]);
+    const [texts, setTexts] = useState([]);
 
     // real time collection data
     onSnapshot(colRef, (snapshot) => {
         console.log("A")
+
+        var snapshotTexts = texts;
+        var snapshotMsgs = msgs;
         snapshot.docs.forEach((doc) => {
-            msgs.push({ ...doc.data(), id: doc.id })
+            snapshotMsgs.push({ ...doc.data(), id: doc.id })
         })
-
-    
         for (let i=0; i < msgs.length; i++) {
-            texts.push(msgs[i].text.messages)
+            snapshotTexts.push(msgs[i].text.messages)
         }
-
-        
-        const lst = texts.map((item) => {
-            
-            return <div>{item}</div>         
-        })
-        console.log('B')
-        setRenderList(lst)
-        texts = []
+        setMsgs(snapshotMsgs);
+        setTexts(snapshotTexts);
     })
     
 
@@ -79,9 +72,14 @@ function Dashboard() {
     <div>
         <div id="MessageOut">
             <ul>
-                {renderList}
-            </ul>
+                {
+                 texts.map((item) => {
             
+                    return <div>{item}</div>         
+                  
+                })
+                }
+            </ul> 
         </div>
         <form className= "form" onSubmit={HandleSubmit}>
                 <h1> Text Message </h1>
