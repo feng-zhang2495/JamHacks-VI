@@ -15,7 +15,7 @@
 
 #login {
     margin-left: 28%;
-    margin-top: 25%;
+    margin-top: 50%;
 }
 
 .form-label {
@@ -44,7 +44,8 @@
     white-space: nowrap;
     position: relative;
     right: 20%;
-    bottom: 100%
+    bottom: 100%;
+    margin-left: 13%;
 }
 
 .rfc {
@@ -96,6 +97,7 @@
     border: none;
     margin-bottom: 20%;
     margin-top: 3%;
+    margin-left: 40%;
 
 }
 
@@ -104,6 +106,6 @@
     text-align: center;
     white-space: nowrap;
     margin-left: 75%;
-    margin-top: 60%;
+    margin-top: 70%;
     color:rgb(171, 167, 167)
 }

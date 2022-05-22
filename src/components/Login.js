@@ -4,6 +4,7 @@ import { useState, useRef } from 'react';
 import { SignUserIn } from '../authentication/Authentication'
 import { Navigate } from 'react'
 import { useAuth } from '../authentication/Authentication'
+import black from '../Images/black.png'
 import './Login.css'
 import './TopSection.css';
 import logo from '../Images/tutor.png'
@@ -91,8 +92,8 @@ const Login = () => {
           <div class="rfc">
             <h1 className="slogan">A new Immersive Tutoring<br/>Experience Awaits YOU.</h1>
           </div>
-              
-      </ div > 
+      </div> 
+      
     )
   }
   

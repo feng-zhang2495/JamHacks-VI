@@ -1,50 +1,45 @@
 import React from 'react' 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { addDoc } from 'firebase/firestore'
-import {getFirestore, collection, getDocs, onSnapshot, doc} from 'firebase/firestore'
+import {getFirestore, collection, getDoc, onSnapshot, doc} from 'firebase/firestore'
 
 
-async function getData() {
-    const db = getFirestore()
 
-    const docRef = doc(db, "messsages", "SF");
-    const docSnap = await getDocs(docRef);
-
-    if (docSnap.exists()) {
-    console.log("Document data:", docSnap.data());
-    } else {
-    // doc.data() will be undefined in this case
-    console.log("No such document!");
-    }
-}
-
-getData()
 
 function Dashboard() {
     const db = getFirestore()
 
     //collection ref
     const colRef = collection(db, 'messages')
-    const [renderList, setRenderList] = useState();
+    const [renderList, setRenderList] = useState([]);
 
     const [msgs, setMsgs] = useState([]);
     const [texts, setTexts] = useState([]);
 
-    // real time collection data
-    onSnapshot(colRef, (snapshot) => {
-        console.log("A")
+   
+        // real time collection data
 
-        var snapshotTexts = texts;
-        var snapshotMsgs = msgs;
-        snapshot.docs.forEach((doc) => {
-            snapshotMsgs.push({ ...doc.data(), id: doc.id })
+    useEffect(() => {
+        onSnapshot(colRef, (snapshot) => {
+            console.log("A")
+    
+            var snapshotTexts = texts;
+            var snapshotMsgs = msgs;
+            snapshot.docs.forEach((doc) => {
+                snapshotMsgs.push({ ...doc.data(), id: doc.id })
+            })
+            for (let i=0; i < msgs.length; i++) {
+                snapshotTexts.push(msgs[i].text.messages)
+            }
+            setMsgs(snapshotMsgs);
+            setTexts(snapshotTexts);
         })
-        for (let i=0; i < msgs.length; i++) {
-            snapshotTexts.push(msgs[i].text.messages)
-        }
-        setMsgs(snapshotMsgs);
-        setTexts(snapshotTexts);
-    })
+    }, [])
+    
+
+    
+    
+    
     
 
 
@@ -67,18 +62,21 @@ function Dashboard() {
             })
     }
 
+    
+    
 
     return (
     <div>
         <div id="MessageOut">
             <ul>
                 {
-                 texts.map((item) => {
-            
-                    return <div>{item}</div>         
-                  
-                })
-                }
+                    texts.map((item) => {
+                        return <div>{item}</div>         
+                    }) 
+                    
+                } 
+                 
+                
             </ul> 
         </div>
         <form className= "form" onSubmit={HandleSubmit}>
@@ -101,7 +99,7 @@ function Dashboard() {
              </form>
     </div>
     )
-}
+            }
 
 
 
